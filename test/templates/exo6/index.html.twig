@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Exo6Controller!{% endblock %}
+
+{% if operateur == 'div' || operateur == "add" || operateur == "sub" || $operateur == "multi" %}
+    {% if nbr2 != 0 && operateur === "div" %}
+        {% if ctype_digit nbr1 && ctype_digitnbr2 %}
+            {% if $operateur == "add" %}
+                <p>La somme de {{nbr1}} et de {{nbr2}} est égale à : {{nbr1 + nbr2}}</p>
+                {# <p>valr = nbr1+nbr2</p>
+                <p>text = "La somme"</p> #}
+            {% else if operateur == "sub" %}
+                <p>La soustraction de {{nbr1}} et de {{nbr2}} est égale à : {{nbr1 - nbr2}}</p>
+                {# $valr = $nbr1-$nbr2;
+                $text = "La soustraction"; #}
+            {% else if operateur == "multi" %}
+                <p>La multiplication de {{nbr1}} et de {{nbr2}} est égale à : {{nbr1 * nbr2}}</p>
+                {# $valr = $nbr1*$nbr2;
+                $text = "La multiplication"; #}
+            {% else if operateur == "div" %}
+                <p>La division de {{nbr1}} et de {{nbr2}} est égale à : {{nbr1 / nbr2}}</p>
+                {# $valr = $nbr1/$nbr2;
+                $text = "La division"; #}
+            {% endif %}
+            <p>Le calcul a été effectué !</p>
+            {# return new Response ($text ." de $nbr1 et de $nbr2 est égale à " .$valr); #}
+        {% else if nbr1 != (int)nbr1 && nbr2 == (int)nbr2 %}
+            <p>{{nbr1}} n'est pas un nombre !</p>
+            {# return new Response ("$nbr1 n'est pas un numéro"); #}
+        {% else if nbr2 != (int)nbr2 && nbr1 == (int)nbr1 %}
+            <p>{{nbr2}} n'est pas un nombre !</p>
+            {# return new Response ("$nbr2 n'est pas un numéro"); #}
+        {% else %}
+            <p>{{nbr1}} et {{nbr2}} ne sont pas des nombres !</p>
+            {# return new Response ("$nbr1 et $nbr2 ne sont pas des numéros"); #}
+        {% endif %}
+    {% else %}
+        {# return new Response ("La division par zéro est impossible !"); #}
+    {% endif %}
+{% else %}
+    {# return new Response ("L'opérateur n'est pas valide"); #}
+{% endif %}
+
+{# Condition si résultat est différent de #}
+    {% if resultat == "Les variables $nbr1 et $nbr2 ne sont pas des nombres" or resultat == "la division est impossible"%}
+        <p><strong>{{ resultat |upper }}</strong></p>
+{# Condition normale affiche le résultat de l'opération #}
+    {% else %}
+        <p>Le resultat de l'operation : <strong>{{operateur}}</strong> avec les nombres
+        <strong>{{nbr1}}</strong> et <strong>{{nbr2}}</strong> est égal à : </p>
+        <p><strong>{{resultat}}</strong></p>
+    {% endif %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+{% endblock %}

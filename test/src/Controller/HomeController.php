@@ -175,5 +175,11 @@ public function calculer($nbr1, $nbr2, $operateur) : Response
 //retourner la réponse
     return new Response($message);
 }
+
+#[Route('/twig', name:'app_exemple')]
+public function exemple(){
+    return $this->render('twig/index.html.twig');
+}
+
 }
 
